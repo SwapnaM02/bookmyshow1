@@ -83,6 +83,9 @@ button {
 .justify-content-end {
   justify-content: end;
 }
+.justify-content-center {
+  justify-content: center;
+}
 .fs-12 {
   font-size: 12px;
 }
@@ -185,6 +188,7 @@ hr {
   gap: 0.5rem;
   flex-wrap: wrap;
   max-width: 600px;
+  margin-left: 28%;
 }
 .seat-ul .seat-btn {
   background-color: #f6f6f6;
@@ -197,8 +201,14 @@ hr {
   font-size: 13px;
   min-height: unset;
 }
-.seat-ul .seat-btn:hover {
+/* .seat-ul .seat-btn:hover {
   background-color: #f1f1f1;
+} */
+
+.seat-ul .seat-btn:hover{
+  border-color: #02a802  !important;
+  background-color: #02a802  !important;
+  color: #fff !important;
 }
 .seat-ul .seat-btn.selected {
   border-color: #02a802;

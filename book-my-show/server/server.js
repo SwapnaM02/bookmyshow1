@@ -26,10 +26,24 @@ connectDB();
  * routes
  */
 const userRouter = require("./routes/userRoutes");
+const movieRouter = require("./routes/movieRouter");
+const theatreRouter = require("./routes/theatreRouter");
 
 app.use(express.json());
+
+/**
+ * routes
+ */
+app.use("/api/bookings", require("./routes/bookingRouter"));
 app.use("/api/users", userRouter);
+app.use("/api/movies", movieRouter);
+app.use("/api/theatres", theatreRouter);
+app.use("/api/shows", require("./routes/showRouter"));
+app.use("/api/bookings", require("./routes/bookingRouter"));
 
 app.listen(8082, () => {
   console.log("Server started at port 8082");
 });
+
+// password
+// 9iqrSfdcbfHYgrtT

@@ -1,14 +1,31 @@
-import React from 'react'
-import { Button, Input, Form } from "antd";
+import React from "react";
+import { Button, Input, Form, message,Radio } from "antd";
 import { Link } from "react-router-dom";
+import { RegisterUser } from "../../api/users";
 
-export const Register = () => {
+function Register() {
+  const onFinish = async (values) => {
+    try {
+      const response = await RegisterUser(values);
+      if (response.success) {
+        // success
+        message.success(response.message);
+      } else {
+        // error
+        message.error(response.message);
+      }
+    } catch (err) {
+      console.log(err);
+      // error
+      message.error("Something went wrong");
+    }
+  };
   return (
     <>
-    <main className="App-header">
+      <main className="App-header">
         <h1>Register to Book My Show</h1>
         <section className="mw-500 text-center px-3">
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               label="Name"
               htmlFor="name"
@@ -65,6 +82,23 @@ export const Register = () => {
                 Register
               </Button>
             </Form.Item>
+
+            <Form.Item
+              label="Register as a Partner"
+              htmlForm="role"
+              name="role"
+              className="d-block tet-center"
+              initialValue={false}
+              rules={[{ required: true, message: "Please select an option" }]}
+            >
+              <div className="d-flex justify-content-start">
+                <Radio.Group name="radiogroup" className="flex-start">
+                  <Radio value={"partner"}>Yes</Radio>
+                  <Radio value={"user"}>No</Radio>
+                </Radio.Group>
+              </div>
+            </Form.Item>
+
           </Form>
           <div>
             <p>
@@ -75,5 +109,7 @@ export const Register = () => {
         </section>
       </main>
     </>
-  )
+  );
 }
+
+export default Register;

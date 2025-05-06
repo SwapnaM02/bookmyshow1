@@ -25,9 +25,18 @@ const userSchema = new mongoose.Schema({
     enum: ["admin", "user", "partner"],
     default: "user",
   },
+  otp: {
+    type: String,
+  },
+  otpExpiry: {
+    type: Date,
+  },
+  
 
  
 });
+
+
 
 const UserModel = mongoose.model("users", userSchema);
 
